@@ -661,7 +661,7 @@ app.get("/", (req, res) => {
     ],
     _id: "5dcc803be3e5c000154b040c",
     title: "Le retour de l'étalon noir",
-    description: "Vends le livre " Le retour de l'étalon noir", bibliothèque verte, excellent état. 1 euro",
+    description: "Vends le livre Le retour de l'étalon noir, bibliothèque verte, excellent état. 1 euro",
     price: 1,
     creator: {
     account: {
