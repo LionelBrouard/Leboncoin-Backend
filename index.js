@@ -7,7 +7,7 @@ const formidable = require("express-formidable");
 const cloudinary = require("cloudinary").v2;
 const stripe = createStripe("process.env.SK_TEST");
 
-app.use(formidableMiddleware());
+app.use(formidable());
 app.use(cors());
 
 cloudinary.config({
