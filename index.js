@@ -1,11 +1,13 @@
 require("dotenv").config();
 const express = require("express");
+const createStripe = require("stripe");
 const cors = require("cors");
 const app = express();
 const formidable = require("express-formidable");
 const cloudinary = require("cloudinary").v2;
+const stripe = createStripe("process.env.SK_TEST");
 
-app.use(formidable());
+app.use(formidableMiddleware());
 app.use(cors());
 
 cloudinary.config({
@@ -1784,6 +1786,21 @@ app.get("/", (req, res) => {
     ]
   });
 });
+
+app.post("/payment", async (req, res) => {
+  try {
+    let { status } = await stripe.charges.create({
+      amount: 2000,
+      currency: "eur",
+      description: "An example charge",
+      source: req.fields.token
+    });
+    res.json({ status });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 app.post("/upload", (req, res) => {
   console.log(req.files.picture.path);
 
